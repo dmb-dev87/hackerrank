@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -36,54 +36,54 @@ function swap(arr, i, j) {
 }
 
 function calculate_up(arr) {
-    var sorted_arr = arr.slice().sort((a,b) => a - b) ;
-    var indexes = {} ;
-    for (let [index, value] of arr.entries()){
+    var sorted_arr = arr.slice().sort((a, b) => a - b);
+    var indexes = {};
+    for (let [index, value] of arr.entries()) {
         indexes[value] = index;
     }
-    var swaps = 0; 
-    for (let [right_index, curent_val] of arr.entries()){
+    var swaps = 0;
+    for (let [right_index, curent_val] of arr.entries()) {
         var right_val = sorted_arr[right_index];
         var this_index = indexes[right_val];
-        if (this_index !== right_index){
+        if (this_index !== right_index) {
             swap(arr, this_index, right_index)
-            indexes[curent_val]= this_index;
-            swaps++; 
+            indexes[curent_val] = this_index;
+            swaps++;
         }
     }
-    
+
     return swaps;
 }
 
 
-function calculate_down(arr){
-    var sorted_arr = arr.slice().sort((a,b) => b - a) ;
-    var indexes = {} ;
-    for (let [index, value] of arr.entries()){
+function calculate_down(arr) {
+    var sorted_arr = arr.slice().sort((a, b) => b - a);
+    var indexes = {};
+    for (let [index, value] of arr.entries()) {
         indexes[value] = index;
-    } 
-    
-    var swaps = 0; 
+    }
+
+    var swaps = 0;
     for (let [right_index, curent_val] of arr.entries()) {
-        var  right_val = sorted_arr[right_index];
-        var  this_index = indexes[right_val];
+        var right_val = sorted_arr[right_index];
+        var this_index = indexes[right_val];
         if (this_index !== right_index) {
             swap(arr, this_index, right_index)
-            indexes[curent_val]= this_index;
+            indexes[curent_val] = this_index;
             swaps++;
         }
     }
-    
+
     return swaps;
-    
+
 }
 
 function lilysHomework(arr) {
     // Write your code here
-    var arr2=arr.slice();
+    var arr2 = arr.slice();
     var down = calculate_down(arr);
     var up = calculate_up(arr2);
-    return Math.min(down,up);
+    return Math.min(down, up);
 }
 
 function main() {

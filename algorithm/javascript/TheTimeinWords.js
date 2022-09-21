@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -65,18 +65,16 @@ function timeInWords(h, m) {
         "twenty eight",
         "twenty nine"
     ];
-    
-     return !m
+
+    return !m
         ? `${words[h]} o' clock`
-        : `${
-            !(m % 30)
-                ? "half"
-                : !(m % 15)
+        : `${!(m % 30)
+            ? "half"
+            : !(m % 15)
                 ? "quarter"
-                : `${m <= 30 ? words[m] : words[60-m]} ${`minute${
-                    m > 1 ? "s" : ""
-            }`}`
-        } ${m <= 30 ? "past" : "to"} ${words[m <= 30 ? h : h+1]}`;
+                : `${m <= 30 ? words[m] : words[60 - m]} ${`minute${m > 1 ? "s" : ""
+                }`}`
+        } ${m <= 30 ? "past" : "to"} ${words[m <= 30 ? h : h + 1]}`;
 }
 
 function main() {

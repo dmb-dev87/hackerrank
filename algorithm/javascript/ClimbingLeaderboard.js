@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -36,7 +36,7 @@ function climbingLeaderboard(ranked, player) {
     let map = rankScores(ranked);
     let index = ranked.length - 1;
     let result = [];
-    
+
     for (let score of player) {
         if (ranked.length === 0) {
             result.push(1);
@@ -53,21 +53,21 @@ function climbingLeaderboard(ranked, player) {
                     result.push(1);
                 }
             }
-        }        
-    }    
+        }
+    }
     return result;
 }
 
 function rankScores(scores) {
     let map = new Map();
     let rank = 1;
-    
+
     for (let leaderScor of scores) {
         if (!map.has(leaderScor)) {
             map.set(leaderScor, rank++);
         }
     }
-    
+
     return map;
 }
 

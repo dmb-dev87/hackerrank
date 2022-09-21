@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -39,18 +39,18 @@ function organizingContainers(container) {
                 target["col"][subIndex] += item;
                 return itemTarget;
             }, []);
-            
+
             return target;
-        },    
+        },
         {
             row: new Array(container.length).fill(0),
             col: new Array(container.length).fill(0)
         }
     );
-    
+
     row.sort();
     col.sort();
-    
+
     for (let value of Array.from(
         { length: container.length },
         (value, index) => index
@@ -60,7 +60,7 @@ function organizingContainers(container) {
             break;
         }
     }
-    
+
     return result ? "Possible" : "Impossible";
 }
 

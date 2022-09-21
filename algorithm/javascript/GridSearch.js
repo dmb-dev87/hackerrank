@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -33,23 +33,23 @@ function readLine() {
 
 function gridSearch(G, P) {
     // Write your code here
-    for(var i = 0; i < G.length; i++) {
+    for (var i = 0; i < G.length; i++) {
         var compIdx = 0;
         var index = 0;
         do {
             var comp = G[i].slice(index);
             compIdx = comp.indexOf(P[0]);
-            if(compIdx > -1) {
-                for(var j = i + 1, k = 1; k < P.length && compIdx === G[j].slice(index).indexOf(P[k]); ++j, ++k);
+            if (compIdx > -1) {
+                for (var j = i + 1, k = 1; k < P.length && compIdx === G[j].slice(index).indexOf(P[k]); ++j, ++k);
                 if (k === P.length) {
                     console.log(i, j);
                     return "YES";
                 }
             }
             index++;
-        } while(index < G[i].length);
+        } while (index < G[i].length);
     }
-    
+
     return "NO";
 }
 

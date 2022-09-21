@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -32,15 +32,15 @@ function readLine() {
 function larrysArray(A) {
     // Write your code here
     var inv = 0;
-    
+
     for (var i = 0; i < A.length; i++) {
-        for (var j = i; j <A.length; j++) {
+        for (var j = i; j < A.length; j++) {
             if (A[i] > A[j]) {
                 inv++;
             }
         }
     }
-    
+
     return inv % 2 === 0 ? "YES" : "NO";
 }
 

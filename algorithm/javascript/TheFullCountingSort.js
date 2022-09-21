@@ -6,11 +6,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -29,19 +29,19 @@ function readLine() {
 function countSort(arr) {
     // Write your code here
     var sorted = [];
-    
-    for(let i = 0; i < arr.length; i++) {
+
+    for (let i = 0; i < arr.length; i++) {
         var char = i < arr.length / 2 ? "-" : arr[i][1];
         var pos = arr[i][0];
         sorted[pos] = (sorted[pos] || []);
         sorted[pos].push(char);
     }
-    
+
     var out = [];
-    for(let key in sorted) {
+    for (let key in sorted) {
         out.push(sorted[key].join(' '));
     }
-    
+
     console.log(out.join(' '));
 }
 

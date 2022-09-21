@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -33,20 +33,20 @@ function readLine() {
 
 function activityNotifications(expenditure, d) {
     // Write your code here
-    
+
     const compare_fn = (a, b) => {
         return a - b;
     };
-    
+
     const binarySearch = (ar, el) => {
         var m = 0;
         var n = ar.length - 1;
-        while ( m <= n ) {
-            var k = ( n + m ) >> 1;
+        while (m <= n) {
+            var k = (n + m) >> 1;
             var cmp = compare_fn(el, ar[k]);
-            if ( cmp > 0 ) {
+            if (cmp > 0) {
                 m = k + 1;
-            } else if ( cmp < 0 ) {
+            } else if (cmp < 0) {
                 n = k - 1;
             } else {
                 return k;
@@ -54,41 +54,41 @@ function activityNotifications(expenditure, d) {
         }
         return -m - 1;
     }
-    
+
     let pos = Math.trunc(d / 2);
-    let notifs = 0;    
-    
+    let notifs = 0;
+
     var expDays = [...expenditure.slice(0, d)];
     expDays.sort((a, b) => { return a - b; });
-    
-    for (let i = d; i < expenditure.length; i++) {        
-        let median = d % 2 === 0 ? expDays[pos-1] + expDays[pos] : expDays[pos] * 2;
-        
+
+    for (let i = d; i < expenditure.length; i++) {
+        let median = d % 2 === 0 ? expDays[pos - 1] + expDays[pos] : expDays[pos] * 2;
+
         if (expenditure[i] >= median) {
             notifs++;
         }
-        
-        var index = binarySearch(expDays, expenditure[i-d]);
-        
+
+        var index = binarySearch(expDays, expenditure[i - d]);
+
         expDays.splice(index, 1);
-        
+
         let val = expenditure[i];
-        
+
         if (val <= expDays[0]) {
             expDays.unshift(val);
         } else if (val > expDays[expDays.length - 1]) {
             expDays.push(val);
         } else {
             let result = binarySearch(expDays, val);
-            
+
             if (result >= 0) {
                 expDays.splice(result, 0, val);
             } else {
-                expDays.splice(-(result+1), 0, val);
+                expDays.splice(-(result + 1), 0, val);
             }
         }
     }
-    
+
     return notifs;
 }
 

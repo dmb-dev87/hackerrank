@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -31,17 +31,19 @@ function readLine() {
 
 function formingMagicSquare(s) {
     // Write your code here   
-    var perm = [[[8, 1, 6], [3, 5, 7], [4, 9, 2]],
-                [[6, 1, 8], [7, 5, 3], [2, 9, 4]],
-                [[4, 9, 2], [3, 5, 7], [8, 1, 6]],
-                [[2, 9, 4], [7, 5, 3], [6, 1, 8]],
-                [[8, 3, 4], [1, 5, 9], [6, 7, 2]],
-                [[4, 3, 8], [9, 5, 1], [2, 7, 6]],
-                [[6, 7, 2], [1, 5, 9], [8, 3, 4]],
-                [[2, 7, 6], [9, 5, 1], [4, 3, 8]]];
-                
+    var perm = [
+        [[8, 1, 6], [3, 5, 7], [4, 9, 2]],
+        [[6, 1, 8], [7, 5, 3], [2, 9, 4]],
+        [[4, 9, 2], [3, 5, 7], [8, 1, 6]],
+        [[2, 9, 4], [7, 5, 3], [6, 1, 8]],
+        [[8, 3, 4], [1, 5, 9], [6, 7, 2]],
+        [[4, 3, 8], [9, 5, 1], [2, 7, 6]],
+        [[6, 7, 2], [1, 5, 9], [8, 3, 4]],
+        [[2, 7, 6], [9, 5, 1], [4, 3, 8]]
+    ];
+
     var min = 1000;
-    
+
     for (var i = 0; i < 8; i++) {
         var sum = 0;
         for (var x = 0; x < 3; x++) {
@@ -49,12 +51,12 @@ function formingMagicSquare(s) {
                 sum += Math.abs(perm[i][x][y] - s[x][y]);
             }
         }
-        
+
         if (sum < min) {
             min = sum;
         }
     }
-    
+
     return min;
 }
 

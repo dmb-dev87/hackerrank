@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -36,25 +36,25 @@ function twoPluses(grid, n, m) {
             return gb === 'G';
         });
     });
-    
+
     var lengthsThatFit = (brd, row, col) => {
         if (!brd[row][col]) return [];
         var result = [1];
-        
+
         var bordermax = Math.min(row, col);
         bordermax = Math.min(bordermax, n - row - 1);
         bordermax = Math.min(bordermax, m - col - 1);
-        
+
         for (var l = 1; l <= bordermax; l++) {
             if (brd[row - l][col] && brd[row + l][col] && brd[row][col - l] && brd[row][col + l]) {
-                result.push(2*l + 1);
+                result.push(2 * l + 1);
             } else {
                 return result;
             }
         }
         return result;
     }
-    
+
     var makeWorkboard = (brd, workbrd, row, col, size) => {
         for (var i = 0; i < n; i++) {
             for (var j = 0; j < m; j++) {
@@ -63,20 +63,20 @@ function twoPluses(grid, n, m) {
         }
         workbrd[row][col] = false;
         for (var l = 1; l <= (size - 1) / 2; l++) {
-            workbrd[row + l][col] = workbrd[row-l][col] = workbrd[row][col+l] = workbrd[row][col-l] = false;
+            workbrd[row + l][col] = workbrd[row - l][col] = workbrd[row][col + l] = workbrd[row][col - l] = false;
         }
     }
-    
+
     var workboard = new Array(n);
-    
+
     for (var i = 0; i < n; i++) workboard[i] = new Array(m);
-    
+
     var maxProduct = 1;
-    
+
     var productOfLengths = (length1, length2) => {
-        return (2*length1 - 1)*(2*length2 - 1);
+        return (2 * length1 - 1) * (2 * length2 - 1);
     };
-    
+
     for (var i = 0; i < n; i++) {
         for (var j = 0; j < m; j++) {
             var lengths = lengthsThatFit(board, i, j);
@@ -94,7 +94,7 @@ function twoPluses(grid, n, m) {
             }
         }
     }
-    
+
     return maxProduct;
 }
 

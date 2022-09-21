@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -34,23 +34,23 @@ function readLine() {
 function nonDivisibleSubset(k, s) {
     // Write your code here
     const n = s.length;
-    
+
     var factoryArray = Array(k).fill(0);
-    
-    for (let i = 0; i < n; i+=1) {
+
+    for (let i = 0; i < n; i += 1) {
         factoryArray[s[i] % k] += 1;
     }
-    
+
     let size = 0;
-    
-    for (let i = 0; i < Math.floor(k/2)+1; i+=1) {
-        if (i == 0 || k == i*2) {
+
+    for (let i = 0; i < Math.floor(k / 2) + 1; i += 1) {
+        if (i == 0 || k == i * 2) {
             size += (factoryArray[i] != 0) ? 1 : 0;
         } else {
-            size += Math.max(factoryArray[i], factoryArray[k-i]);
+            size += Math.max(factoryArray[i], factoryArray[k - i]);
         }
     }
-    
+
     return size;
 }
 

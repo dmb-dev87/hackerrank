@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -44,36 +44,36 @@ function queensAttack(n, k, r_q, c_q, obstacles) {
     var above_right = Math.min(right, above);
     var below_left = Math.min(left, below);
     var below_right = Math.min(right, below);
-    
+
     for (var i = 0; i < k; i++) {
         if (obstacles[i][0] === r_q) {
             if (obstacles[i][1] < c_q) {
-                left = Math.min(left, c_q-obstacles[i][1]-1);
+                left = Math.min(left, c_q - obstacles[i][1] - 1);
             } else {
-                right = Math.min(right, obstacles[i][1]-c_q-1);
+                right = Math.min(right, obstacles[i][1] - c_q - 1);
             }
         } else if (obstacles[i][1] === c_q) {
             if (obstacles[i][0] < r_q) {
-                below = Math.min(below, r_q-obstacles[i][0]-1);
+                below = Math.min(below, r_q - obstacles[i][0] - 1);
             } else {
-                above = Math.min(above, obstacles[i][0]-r_q-1);
+                above = Math.min(above, obstacles[i][0] - r_q - 1);
             }
         } else if (obstacles[i][0] - obstacles[i][1] === r_q - c_q) {
             if (obstacles[i][1] < c_q) {
-                below_left = Math.min(below_left, c_q-obstacles[i][1]-1);
+                below_left = Math.min(below_left, c_q - obstacles[i][1] - 1);
             } else {
-                above_right = Math.min(above_right, obstacles[i][1]-c_q-1);
+                above_right = Math.min(above_right, obstacles[i][1] - c_q - 1);
             }
         } else if (obstacles[i][0] + obstacles[i][1] === r_q + c_q) {
             if (obstacles[i][1] < c_q) {
-                above_left = Math.min(above_left, c_q-obstacles[i][1]-1);
+                above_left = Math.min(above_left, c_q - obstacles[i][1] - 1);
             } else {
-                below_right = Math.min(below_right, obstacles[i][1]-c_q-1);
+                below_right = Math.min(below_right, obstacles[i][1] - c_q - 1);
             }
         }
     }
-    
-    return left+right+below+above+below_right+below_left+above_left+above_right;
+
+    return left + right + below + above + below_right + below_left + above_left + above_right;
 }
 
 function main() {

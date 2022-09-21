@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -34,24 +34,24 @@ function readLine() {
 function absolutePermutation(n, k) {
     // Write your code here
     let ret;
-    
-    if(k==0) {
-        ret = Array(n).fill(0).map((e,i)=>i+1);
+
+    if (k == 0) {
+        ret = Array(n).fill(0).map((e, i) => i + 1);
     }
-    else if((n/k)%2==0) {
-        ret = Array(n).fill(0).map((e,i)=>i+1);
-        for(let i = 0; i < n; i+=2*k) {
+    else if ((n / k) % 2 == 0) {
+        ret = Array(n).fill(0).map((e, i) => i + 1);
+        for (let i = 0; i < n; i += 2 * k) {
             let j = i + k;
-            let L = ret.slice(i,i+k);
-            let R = ret.slice(j,j+k);
-            ret.splice(i,k,...R);
-            ret.splice(j,k,...L);
+            let L = ret.slice(i, i + k);
+            let R = ret.slice(j, j + k);
+            ret.splice(i, k, ...R);
+            ret.splice(j, k, ...L);
         }
     }
-    else{
+    else {
         ret = [-1];
     }
-    
+
     return ret;
 }
 

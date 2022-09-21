@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -32,36 +32,36 @@ function readLine() {
 function surfaceArea(A, H, W) {
     // Write your code here
     let sum = 0;
-    
-    for (var i = 0; i < H; i++) {        
+
+    for (var i = 0; i < H; i++) {
         for (var j = 0; j < W; j++) {
             sum += 2;
             var L = A[i][j];
-            
+
             if (!i) {
                 sum += L;
-            } else if (L > A[i-1][j]) {
-                sum += L - A[i-1][j];
+            } else if (L > A[i - 1][j]) {
+                sum += L - A[i - 1][j];
             }
             if (i === H - 1) {
                 sum += L;
-            } else if (L > A[i+1][j]) {
-                sum += L - A[i+1][j];
+            } else if (L > A[i + 1][j]) {
+                sum += L - A[i + 1][j];
             }
-            
+
             if (!j) {
                 sum += L;
-            } else if (L > A[i][j-1]) {
-                sum += L - A[i][j-1];
+            } else if (L > A[i][j - 1]) {
+                sum += L - A[i][j - 1];
             }
             if (j === W - 1) {
                 sum += L;
-            } else if (L > A[i][j+1]) {
-                sum += L - A[i][j+1];
+            } else if (L > A[i][j + 1]) {
+                sum += L - A[i][j + 1];
             }
         }
     }
-    
+
     return sum;
 }
 

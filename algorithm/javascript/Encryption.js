@@ -8,11 +8,11 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
+process.stdin.on('data', function (inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
+process.stdin.on('end', function () {
     inputString = inputString.split('\n');
 
     main();
@@ -31,7 +31,27 @@ function readLine() {
 
 function encryption(s) {
     // Write your code here
+    const ceil = Math.ceil(Math.sqrt(s.length));
 
+    let temp = s;
+    let array = [];
+
+    while (temp) {
+        array = array.concat(temp.substring(0, ceil));
+        temp = temp.substring(ceil)
+    }
+
+    let result = [];
+
+    for (let i = 0; i < ceil; i++) {
+        result = result.concat(
+            array.reduce((r, v) => {
+                return r + (v[i] || "")
+            }, "")
+        )
+    }
+
+    return result.join(' ');
 }
 
 function main() {
